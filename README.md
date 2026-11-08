@@ -1,10 +1,10 @@
-# NetProwler V1
+# NetProwler V2
 
 This is a Python project I made while learning Python.
 
 ## What it does
 
-WiFiScope is a clean, modern desktop WiFi monitor for Windows. It reads your adapter's live status straight from the `netsh` command and displays it in an easy-to-read dashboard — network name, connection state, signal strength, band, channel, security, and link speeds. One click refreshes everything.
+NetProwler is a clean, modern desktop WiFi monitor for Windows. It reads your adapter's live status straight from the `netsh` command and displays it in an easy-to-read dashboard — network name, connection state, signal strength, band, channel, security, and link speeds. One click refreshes everything.
 
 ## Features
 
@@ -12,8 +12,9 @@ WiFiScope is a clean, modern desktop WiFi monitor for Windows. It reads your ada
 - Displays signal strength, band (2.4/5 GHz), and channel
 - Shows radio type, authentication method, and cipher
 - Shows receive and transmit speeds in Mbps
-- One-click refresh button
+- One-click hard refresh button
 - Clean dark-mode card layout built with CustomTkinter
+- Auto refresh and colour coded symbols for easier understanding
 
 ## What I learned
 
@@ -37,11 +38,17 @@ WiFiScope is a clean, modern desktop WiFi monitor for Windows. It reads your ada
 
 **Made with:** Python
 
+## Improvements from V1
+
+- Colour coded signals
+- Disconnect button
+- Connect button that recieves your input and tries to connect to the given wifi
+- Auto refresh every 3 seconds
+- Manual refresh button if a timeout error occurs
+
 ## Future improvements
 
-- Auto-refresh every few seconds
-- Color-code the signal strength (green/yellow/red)
 - Add a signal strength progress bar
-- Show a list of saved WiFi profiles
-- Add connect/disconnect buttons
-- Add ping/latency test
+- Maybe Graphs
+
+
