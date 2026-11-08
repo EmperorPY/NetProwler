@@ -91,7 +91,7 @@ def refresh():
         elif line.startswith("Transmit rate"):
             tx_value.configure(text=line.split(":", 1)[1].strip())
             if float(line.split(":", 1)[1].strip().split(" ")[0]) <= 100:
-                tx_value.configure(text_color="red")
+                tx_value.configure(text_color="darkred")
             elif float(line.split(":", 1)[1].strip().split(" ")[0]) <= 299:
                 tx_value.configure(text_color="orange")
             elif float(line.split(":", 1)[1].strip().split(" ")[0]) <= 999:
