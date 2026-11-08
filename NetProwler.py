@@ -80,7 +80,7 @@ def refresh():
             elif float(line.split(":", 1)[1].strip().split(" ")[0]) <= 299:
                 rx_value.configure(text_color="orange")
             elif float(line.split(":", 1)[1].strip().split(" ")[0]) <= 999:
-                rx_value.configure(text_color="lightgreen")
+                rx_value.configure(text_color="green")
             elif float(line.split(":", 1)[1].strip().split(" ")[0]) >= 1000:
                 rx_value.configure(text_color="cyan")
 
