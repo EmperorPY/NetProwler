@@ -15,8 +15,10 @@ def disconnect():
             text=True, 
             check=True
         )
+        refresh()
+        error_label.configure(text="Succesfully Unthethered", text_color="green")
     except subprocess.CalledProcessError:
-        error_label.configure(text="Error disconnecting WiFi")
+        error_label.configure(text="Error disconnecting WiFi", text_color="red")
 
 def auto_update():
     refresh()
@@ -76,7 +78,7 @@ def refresh():
         elif line.startswith("Receive rate"):
             rx_value.configure(text=line.split(":", 1)[1].strip())
             if float(line.split(":", 1)[1].strip().split(" ")[0]) <= 100:
-                rx_value.configure(text_color="red")
+                rx_value.configure(text_color="darkred")
             elif float(line.split(":", 1)[1].strip().split(" ")[0]) <= 299:
                 rx_value.configure(text_color="orange")
             elif float(line.split(":", 1)[1].strip().split(" ")[0]) <= 999:
@@ -161,7 +163,7 @@ wifi_entry = ctk.CTkEntry(
     font=("Arial", 16),
     width=300,
     height=40,
-    fg_color="darkgrey",
+    fg_color="lightgrey",
     text_color="black",
     corner_radius=10,
 )
@@ -174,7 +176,7 @@ interface_entry = ctk.CTkEntry(
     font=("Arial", 16),
     width=300,
     height=40,
-    fg_color="darkgrey",
+    fg_color="lightgrey",
     text_color="black",
     corner_radius=10,
 )
@@ -187,14 +189,20 @@ def connect():
         wifi_name = wifi_entry.get()
         interface_name = interface_entry.get()
         # Executes: netsh wlan connect name=<wifi_name> interface=<interface_name>
+        if wifi_name == "":
+            error_label.configure(text="Please enter a valid wifi name.", text_color="red")
+        if interface_name == "":
+            error_label.configure(text="Please enter a valid interface.", text_color="red")
         result = subprocess.run(
             ["netsh", "wlan", "connect", "name=" + wifi_name, "interface=" + interface_name], 
             capture_output=True, 
             text=True, 
             check=True
         )
+        error_label.configure(text="Request Successful",text_color="green")
+        refresh()
     except subprocess.CalledProcessError as e:
-        error_label.configure(text="Error connecting WiFi")
+        error_label.configure(text="Error connecting WiFi",text_color="red")
 
 connect_button = ctk.CTkButton(
     refresh_frame,
@@ -211,10 +219,6 @@ connect_button = ctk.CTkButton(
 
 connect_button.pack(pady=5)
 
-
-
-
-
 disconnect_button = ctk.CTkButton(
     refresh_frame,
     text="Disconnect",
@@ -228,10 +232,6 @@ disconnect_button = ctk.CTkButton(
     corner_radius=10,
 )
 disconnect_button.pack()
-
-
-
-
 
 error_label = ctk.CTkLabel(refresh_frame, text="", text_color="red")
 error_label.pack(pady=(10, 0))
