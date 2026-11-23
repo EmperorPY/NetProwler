@@ -32,7 +32,7 @@ NetProwler is a clean, modern desktop WiFi monitor for Windows. It reads your ad
    ```
 3. Run the file:
    ```bash
-   python wifiscope.py
+   python NetProwler.py
    ```
 4. **Note:** this app uses Windows' `netsh` command, so it only works on Windows. On non-English Windows, some field names differ — see the note in the code if labels show "—".
 
